@@ -1,0 +1,9 @@
+{% if latest_worker_list %}
+    <ul>
+    {% for worker in latest_worker_list %}
+        <li><a href="/the_redhuman_is/{{ worker.id }}/">{{ worker.last_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No workers are available.</p>
+{% endif %}
