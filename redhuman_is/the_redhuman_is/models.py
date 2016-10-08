@@ -49,3 +49,4 @@ class WorkerRegistration(models.Model):
 class TelNumber(models.Model):
     workers_id = models.ForeignKey(Worker, on_delete=models.CASCADE)
     tel_number = models.IntegerField(default=89)
+    votes = models.IntegerField(default=0)
