@@ -1,0 +1,9 @@
+<h1>{{ worker.last_name }}</h1>
+
+<ul>
+{% for telnumber in worker.telnumber_set.all %}
+    <li>{{ telnumber.tel_number }} -- {{ telnumber.votes }} vote{{ telnumber.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'the_redhuman_is:detail' worker.id %}">Vote again?</a>

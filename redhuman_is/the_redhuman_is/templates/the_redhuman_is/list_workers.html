@@ -1,0 +1,9 @@
+{% extends 'the_redhuman_is/base.html' %}
+
+{% block content %}
+  {% for worker in workers %}
+    <p><a href="{% url 'the_redhuman_is:worker_detail' pk=worker.pk %}">{{ worker.input_date }}</a></p>
+    <p>{{ worker.last_name }}</p>
+    <p>{{ worker.name }}</p>
+  {% endfor %}
+{% endblock %}

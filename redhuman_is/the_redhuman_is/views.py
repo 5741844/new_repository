@@ -1,40 +1,36 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.utils import timezone
 
-from .models import Worker, TelNumber
+
+from .models import Worker
+from .forms import WorkerForm
 # Create your views here.
-class IndexView(generic.ListView):
-    template_name = 'the_redhuman_is/index.html'
-    context_object_name = 'latest_worker_list'
+def base(request):
+    return render(request, 'the_redhuman_is/base.html', {})
 
-    def get_queryset(self):
-        """Return the last five published Workers."""
-        return Worker.objects.order_by('-pub_date')[:5]
-
-
-class DetailView(generic.DetailView):
-    model = Worker
-    template_name = 'the_redhuman_is/detail.html'
-
-
-class ResultsView(generic.DetailView):
-    model = Worker
-    template_name = 'the_redhuman_is/results.html'
-
-def vote(request, worker_id):
-    worker = get_object_or_404(Worker, pk=worker_id)
-    try:
-        selected_telnumber = worker.telnumber_set.get(pk=request.POST['telnumber'])
-    except (KeyError, TelNumber.DoesNotExist):
-        # Redisplay the Worker voting form.
-        return render(request, 'the_redhuman_is/detail.html', {
-            'worker': worker,
-            'error_message': "You didn't select a choice.",
-        })
+def new_worker(request):
+    if request.method == "POST":
+        form = WorkerForm(request.POST)
+        if form.is_valid():
+            worker = form.save(commit=False)
+            worker.input_date = timezone.now()
+            worker.save()
+            return redirect('/')
     else:
-        selected_telnumber.votes += 1
-        selected_telnumber.save()
-        return HttpResponseRedirect(reverse('the_redhuman_is:results', args=(worker.id,)))
+        form = WorkerForm()
+    return render(request, 'the_redhuman_is/new_worker.html', {'form': form})
+
+def add_worker(request):
+    return render(request, 'the_redhuman_is/add_worker.html', {})
+
+def list_workers(request):
+    workers = Worker.objects.order_by('-input_date')
+    return render(request, 'the_redhuman_is/list_workers.html', {'workers': workers})
+
+def worker_detail(request, pk):
+    worker = get_object_or_404(Worker, pk=pk)
+    return render(request, 'the_redhuman_is/worker_detail.html', {'worker': worker})

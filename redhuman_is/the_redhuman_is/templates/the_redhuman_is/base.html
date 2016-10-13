@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Главная</title>
+  </head>
+{% block head %}
+	{% block title %}{% endblock %}
+	{% block menu %}{% endblock %}
+{% endblock %}
+
+{% block page %}
+<p><a href="{% url 'the_redhuman_is:new_worker' %}">Собаки</a></p>
+<p><a href="{% url 'the_redhuman_is:add_worker' %}">ТЕСТ</a></p>
+<p><a href="{% url 'the_redhuman_is:list_workers' %}">Лист</a></p>
+      {% block content %}
+      {% endblock %}
+{% endblock %}
+
+</html>

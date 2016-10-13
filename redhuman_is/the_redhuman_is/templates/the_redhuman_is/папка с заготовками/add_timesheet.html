@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Табель</title>
+  </head>
+  <body>
+  <style>
+   p {
+    margin-top: 10px;
+    margin-bottom: -9px;
+   }
+   legend {
+    font-size: 120%;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: -9px;
+   }
+   fieldset {
+    margin-top: 5px;
+    margin-bottom: -5px;
+   }
+   .layer1 {
+    width: 500px;
+   }
+   .layer2 {
+    width: 500px;
+   }
+  </style>
+      <form action="mailto:hr@redhuman.ru" enctype="text/plain" method="POST" >
+
+        <fieldset class="layer1">
+          <legend>Табель</legend>
+          <p><label for="customer">Заказчик: </label><input type="text" name="customer"> <label for="location">Объект: </label><input type="text" name="location"></p>
+          <p><label for="list_date">Дата: </label><input type="date" name="list_date"> <label>Смена: </label><select required name="smena"><option value="День">День</option><option value="Ночь">Ночь</option></select></p>
+          <p><label for="taskmaster">Бригадир: </label><input type="text" name="taskmaster"></p>
+          <p><label for="photo3">Фото: </label><input type="file" name="photo3"></p>
+
+        </fieldset>
+
+        <fieldset class="layer2">
+          <legend>Перечень</legend>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"><!--mce:0--></script>
+          <script language="JavaScript">
+          $(document).ready(function(){
+                $("#1").click(function(){
+                        $('#2').append('<input type="text" name="text[]"><input type="text" name="text[]"><br>');
+                      });
+                    });
+          </script>
+          <div id='1'>Добавить поле</div>
+          <div id='2'></div>
+          </fieldset>
+      <p><input type="submit" value="Отправить"></p>
+      </form>
+
+  </body>
+</html>

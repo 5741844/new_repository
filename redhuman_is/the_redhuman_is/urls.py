@@ -4,9 +4,10 @@ from . import views
 
 app_name = 'the_redhuman_is'
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
-    url(r'^(?P<pk>[0-9]+)/results/$', views.ResultsView.as_view(), name='results'),
-    url(r'^(?P<worker_id>[0-9]+)/vote/$', views.vote, name='vote'),
 
+    url(r'^$', views.base, name='base'),
+    url(r'^new-worker/$', views.new_worker, name='new_worker'),
+    url(r'^add-worker/$', views.add_worker, name='add_worker'),
+    url(r'^list-workers/$', views.list_workers, name='list_workers'),
+    url(r'^worker/(?P<pk>[0-9]+)/$', views.worker_detail, name='worker_detail'),
 ]

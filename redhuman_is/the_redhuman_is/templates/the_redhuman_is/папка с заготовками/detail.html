@@ -1,0 +1,12 @@
+<h1>{{ worker.last_name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'the_redhuman_is:vote' worker.id %}" method="post">
+{% csrf_token %}
+{% for telnumber in worker.telnumber_set.all %}
+    <input type="radio" name="telnumber" id="telnumber{{ forloop.counter }}" value="{{ telnumber.id }}" />
+    <label for="telnumber{{ forloop.counter }}">{{ telnumber.tel_number }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
