@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Рабочий</title>
+  </head>
+  <body>
+  <style>
+   p {
+    margin-top: 10px;
+    margin-bottom: -9px;
+   }
+   legend {
+    font-size: 120%;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: -9px;
+   }
+   fieldset {
+    margin-top: 5px;
+    margin-bottom: -5px;
+   }
+   .layer1 {
+    width: 300px;
+   }
+   .layer2 {
+    width: 500px;
+   }
+  </style>
+
+  <form action="mailto:hr@redhuman.ru" enctype="text/plain" method="POST" >
+    <fieldset class="layer1">
+      <legend>Персональные данные</legend>
+      <p><label for="last_name">Фамилия<em>*</em> </label><input type="text" name="last_name"></p>
+      <p><label for="name">Имя<em>*</em> </label><input type="text" name="name"></p>
+      <p><label for="patronymic">Отчество </label><input type="text" name="patronymic"></p>
+      <p><label for="birth_date">Дата рождения: </label><input type="date" name="birth_date"></p>
+      <p><label for="tel_number">Телефон: </label><input type="text" name="tel_number" maxlength="10" pattern="[0-9]{10}"></p>
+    </fieldset>
+
+    <fieldset class="layer1">
+      <legend>Паспорт</legend>
+      <p><label>Тип паспорта: </label><select required name="passport_type"><option value="Внутренний">Внутренний</option><option value="Заграничный">Заграничный</option></select></p>
+      <p><label for="passport_number">Номер: </label><input type="text" name="passport_number" maxlength="9"></p>
+      <p><label for="date_of_issue">Дата выдачи: </label><input type="date" name="date_of_issue"></p>
+      <p><label for="date_of_exp">Дата окончания: </label><input type="date" name="date_of_exp"></p>
+      <p><label for="issued_by">Кем выдан: </label><input type="text" name="issued_by"></p>
+    </fieldset>
+
+    <fieldset class="layer1">
+      <legend>Миграционная карта</legend>
+      <p><label for="mig_series">Серия: </label><input type="text" name="mig_series" maxlength="4" pattern="[0-9]{4}"></p>
+      <p><label for="mig_number">Номер: </label><input type="text" name="mig_number" maxlength="7" pattern="[0-9]{7}"></p>
+      <p><label for="m_date_of_issue">Дата выдачи: </label><input type="date" name="m_date_of_issue"></p>
+      <p><label for="m_date_of_exp">Дата окончания: </label><input type="date" name="m_date_of_exp"></p>
+    </fieldset>
+
+    <fieldset class="layer1">
+      <legend>Регистрация</legend>
+      <p><label for="city">Город<em>*</em> </label><input type="text" name="city" value="Москва"></p>
+      <p><label for="street">Улица<em>*</em> </label><input type="text" name="street"></p>
+      <p><label for="house_number">Дом<em>*</em> </label><input type="text" name="house_number"></p>
+      <p><label for="building_number">Строение: </label><input type="text" name="building_number"></p>
+      <p><label for="appt_number">Квартира<em>*</em> </label><input type="text" name="appt_number"></p>
+    </fieldset>
+
+    <fieldset class="layer2">
+      <legend>Фото</legend>
+      <p><label for="photo1">Фото лицевая сторона: </label><input type="file" name="photo1"></p>
+      <p><label for="photo2">Фото оборотная сторона: </label><input type="file" name="photo2"></p>
+      <p><label for="photo3">Дополнительное фото: </label><input type="file" name="photo3"></p>
+    </fieldset>
+
+
+  <p><input type="submit" value="Отправить"></p>
+  </form>
+
+  </body>
+</html>

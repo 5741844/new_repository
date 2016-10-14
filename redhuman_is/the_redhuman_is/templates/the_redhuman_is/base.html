@@ -10,9 +10,10 @@
 {% endblock %}
 
 {% block page %}
-<p><a href="{% url 'the_redhuman_is:new_worker' %}">Собаки</a></p>
-<p><a href="{% url 'the_redhuman_is:add_worker' %}">ТЕСТ</a></p>
-<p><a href="{% url 'the_redhuman_is:list_workers' %}">Лист</a></p>
+<a href="{% url 'the_redhuman_is:base' %}">Главная</a>
+<a href="{% url 'the_redhuman_is:list_workers' %}">Список</a>
+<a href="{% url 'the_redhuman_is:new_worker' %}">Добавить рабочего</a>
+
       {% block content %}
       {% endblock %}
 {% endblock %}

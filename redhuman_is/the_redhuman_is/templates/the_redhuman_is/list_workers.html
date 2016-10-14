@@ -1,9 +1,22 @@
 {% extends 'the_redhuman_is/base.html' %}
 
 {% block content %}
+  <table>
+    <tr>
+      <th>Дата занесения</th>
+      <th>Фамилия</th>
+      <th>Имя</th>
+      <th>Отчество</th>
+      <th>Дата окончания миграционки</th>
+    </tr>
   {% for worker in workers %}
-    <p><a href="{% url 'the_redhuman_is:worker_detail' pk=worker.pk %}">{{ worker.input_date }}</a></p>
-    <p>{{ worker.last_name }}</p>
-    <p>{{ worker.name }}</p>
+    <tr>
+      <td><a href="{% url 'the_redhuman_is:worker_detail' pk=worker.pk %}">{{ worker.input_date|date:"G:i d.m.Y" }}</a></td>
+      <td>{{ worker.last_name }}</td>
+      <td>{{ worker.name }}</td>
+      <td>{{ worker.patronymic }}</td>
+      <td>{{ worker.m_date_of_exp|date:"d.m.Y" }}</td>
+    </tr>
   {% endfor %}
+  </table>
 {% endblock %}
