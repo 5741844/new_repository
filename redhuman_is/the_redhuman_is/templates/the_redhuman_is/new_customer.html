@@ -1,0 +1,16 @@
+{% extends 'the_redhuman_is/base.html' %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Клиент</title>
+  </head>
+  {% block content %}
+    <h1>Новый клиент</h1>
+    <form method="POST">
+      {% csrf_token %}
+        {{ cform.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+  
+  {% endblock %}
+</html>

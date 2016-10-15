@@ -21,7 +21,7 @@ label {
       <a href="{% url 'the_redhuman_is:worker_del' pk=worker.pk %}"><button>Удалить</button></a>
     </p>
     <p><label>Из паспорта: </label>{{ workerpass.passport_type }}</p>
-    <p><label>Паспорт, дата выдачи: </label>{{ workerpassport.date_of_issue|date:"d.m.Y" }}</p>
+    <p><label>Паспорт, дата выдачи: </label>{{ workerpass.date_of_issue|date:"d.m.Y" }}</p>
     <p><label>Из регистрации: </label>{{ workerreg.city }}</p>
 
 {% endblock %}

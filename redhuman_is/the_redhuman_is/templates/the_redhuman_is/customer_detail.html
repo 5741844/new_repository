@@ -1,0 +1,41 @@
+{% extends 'the_redhuman_is/base.html' %}
+<style>
+label {
+  font-weight: 700;
+}
+</style>
+{% block content %}
+
+    <p><label>Название: </label>{{ customer.cust_name }}</p>
+    <table>
+      <tr>
+        <th>Название</th>
+        <th>Адрес</th>
+        <th>Как добраться</th>
+      </tr>
+    {% for customerloc in customerlocs %}
+      <tr>
+        <td>{{ customerloc.location_name }}</td>
+        <td>{{ customerloc.location_adress }}</td>
+        <td>{{ customerloc.location_how_to_get }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'the_redhuman_is:new_locations' pk=customer.pk %}">Добавить обьект</a></p>
+    <table>
+      <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+      </tr>
+    {% for customerrepr in customerreprs %}
+      <tr>
+        <td>{{ customerrepr.repr_last_name }}</td>
+        <td>{{ customerrepr.repr_name }}</td>
+        <td>{{ customerrepr.repr_patronymic }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'the_redhuman_is:new_representatives' pk=customer.pk %}">Добавить контактное лицо</a></p>
+'
+{% endblock %}

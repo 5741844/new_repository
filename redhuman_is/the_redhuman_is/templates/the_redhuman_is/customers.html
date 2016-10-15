@@ -1,0 +1,17 @@
+{% extends 'the_redhuman_is/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'the_redhuman_is:new_customer' %}">Добавить клиента</a>
+
+  <table>
+    <tr>
+      <th>Название</th>
+    </tr>
+  {% for customer in customers %}
+    <tr>
+      <td><a href="{% url 'the_redhuman_is:customer_detail' pk=customer.pk %}">{{ customer.cust_name }}</a></td>      
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
