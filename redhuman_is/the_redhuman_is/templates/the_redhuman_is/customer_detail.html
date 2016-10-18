@@ -21,7 +21,7 @@ label {
       </tr>
     {% endfor %}
     </table>
-    <p><a href="{% url 'the_redhuman_is:new_locations' pk=customer.pk %}">Добавить обьект</a></p>
+    <p><a href="{% url 'the_redhuman_is:new_locations' pk=customer.pk %}"><button>Добавить обьект</button></a></p>
     <table>
       <tr>
         <th>Фамилия</th>
@@ -36,6 +36,6 @@ label {
       </tr>
     {% endfor %}
     </table>
-    <p><a href="{% url 'the_redhuman_is:new_representatives' pk=customer.pk %}">Добавить контактное лицо</a></p>
+    <p><a href="{% url 'the_redhuman_is:new_representatives' pk=customer.pk %}"><button>Добавить контактное лицо</button></a></p>
 '
 {% endblock %}

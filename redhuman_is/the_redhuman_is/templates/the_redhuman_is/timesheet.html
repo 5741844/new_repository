@@ -1,0 +1,45 @@
+{% extends 'the_redhuman_is/base.html' %}
+<style>
+label {
+  font-weight: 700;
+}
+</style>
+
+
+{% block content %}
+<p><label>Дата: </label>{{ timesheet.sheet_date|date:"d.m.Y" }}</p>
+<p><label>Смена: </label>{{ timesheet.sheet_turn }}</p>
+<p><label>Заказчик: </label>{{ timesheet.customer }}</p>
+<p><label>Объект: </label>{{ timesheet.cust_location }}</p>
+<p><label>Бригадир: </label>{{ timesheet.customer_repr }}</p>
+<p><label>Контактное лицо: </label>{{ timesheet.foreman }}</p>
+<p><label>Количество рабочих: </label>{{ timesheet.turnouts_number }}</p>
+<table>
+  <tr>
+    <th>Фамилия</th>
+    <th>Количество часов</th>
+    <th>Участок</th>
+  </tr>
+{% for turnout in turnouts %}
+  <tr>
+    <td>{{ turnout.worker_id }}</td>
+    <td>{{ turnout.worker_function }}</td>
+    <td>{{ turnout.hours_worked }}</td>
+  </tr>
+{% endfor %}
+</table>
+<p><a href="{% url 'the_redhuman_is:new_turnouts' pk=timesheet.pk %}"><button>Добавить выходы</button></a></p>
+{% endblock %}
+
+
+{% block sidebar %}
+{% load thumbnail %}
+{% if timesheet.image %}
+  <!--{% thumbnail timesheet.image "600x800" crop="center" as im %}
+    <img src="{{ timesheet.image.url }}" width="{{ im.width }}" height="{{ im.height }}">
+  {% endthumbnail %}-->
+  {% thumbnail timesheet.image "x500" as im %}
+      <a href="{% url 'the_redhuman_is:timesheet_image' pk=timesheet.pk %}"><img src="{{ im.url }}"></a>
+  {% endthumbnail %}
+{% endif %}
+{% endblock %}

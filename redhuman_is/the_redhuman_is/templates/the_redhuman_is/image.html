@@ -1,0 +1,26 @@
+{% extends 'the_redhuman_is/base.html' %}
+<style>
+label {
+  font-weight: 700;
+}
+</style>
+{% block content %}
+
+{% if instance.image %}
+    <img src="{{ instance.image.url }}">
+{% endif %}
+
+{% if instance.image1 %}
+    <img src="{{ instance.image1.url }}">
+{% endif %}
+
+{% if instance2.image %}
+    <img src="{{ instance.image2.url }}">
+{% endif %}
+
+{% if instance3.image %}
+    <img src="{{ instance.image3.url }}">
+{% endif %}
+
+
+{% endblock %}

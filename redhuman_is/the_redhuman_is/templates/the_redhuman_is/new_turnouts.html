@@ -1,0 +1,34 @@
+{% extends 'the_redhuman_is/base.html' %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Добавить выходы</title>
+  </head>
+  {% block content %}
+
+    <h1>Выходы</h1>
+
+    <form method="post">
+      {% csrf_token %}
+        {{ formset.management_form }}
+          <table>
+            <tr>
+              <th>Рабочий</th>
+              <th>Рабочий</th>
+              <th>Участок</th>
+              <th>Кол-во часов</th>
+            </tr>
+            {% for form in formset %}
+            <tr>
+              <td>{{ form.id }}</td>
+              <td>{{ form.worker_id }}</td>
+              <td>{{ form.worker_function }}</td>
+              <td>{{ form.hours_worked }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        <button type="submit">Сохранить</button>
+    </form>
+
+  {% endblock %}
+</html>

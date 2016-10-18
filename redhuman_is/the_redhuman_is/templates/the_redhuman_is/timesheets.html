@@ -1,0 +1,29 @@
+{% extends 'the_redhuman_is/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'the_redhuman_is:new_timesheet' %}">Добавить табель</a>
+
+  <table>
+    <tr>
+      <th>Дата</th>
+      <th>Смена</th>
+      <th>Заказчик</th>
+      <th>Объект</th>
+      <th>Бригадир</th>
+      <th>Контактное лицо</th>
+      <th>Количество рабочих</th>
+    </tr>
+  {% for timesheet in timesheets %}
+    <tr>
+      <td><a href="{% url 'the_redhuman_is:timesheet' pk=timesheet.pk %}">{{ timesheet.sheet_date|date:"d.m.Y" }}</a></td>
+      <td>{{ timesheet.sheet_turn }}</td>
+      <td>{{ timesheet.customer }}</td>
+      <td>{{ timesheet.cust_location }}</td>
+      <td>{{ timesheet.customer_repr }}</td>
+      <td>{{ timesheet.foreman }}</td>
+      <td>{{ timesheet.turnouts_number }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

@@ -1,6 +1,9 @@
 {% extends 'the_redhuman_is/base.html' %}
 
+
+
 {% block content %}
+<a href="{% url 'the_redhuman_is:new_worker' %}"><button>Добавить рабочего</button></a>
   <table>
     <tr>
       <th>Дата занесения</th>
@@ -8,6 +11,7 @@
       <th>Имя</th>
       <th>Отчество</th>
       <th>Дата окончания миграционки</th>
+      <th>Количество выходов</th>
     </tr>
   {% for worker in workers %}
     <tr>
@@ -16,6 +20,7 @@
       <td>{{ worker.name }}</td>
       <td>{{ worker.patronymic }}</td>
       <td>{{ worker.m_date_of_exp|date:"d.m.Y" }}</td>
+      <td>{{ worker.workerturnout__count }}</td>
     </tr>
   {% endfor %}
   </table>

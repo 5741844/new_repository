@@ -4,8 +4,9 @@ label {
   font-weight: 700;
 }
 </style>
-{% block content %}
 
+
+{% block content %}
     <p><label>Дата внесения: </label>{{ worker.input_date|date:"G:i d.m.Y" }}</p>
     <p><label>Фамилия: </label>{{ worker.last_name }}</p>
     <p><label>Имя: </label>{{ worker.name }}</p>
@@ -18,10 +19,92 @@ label {
     <p><label>Миграционная карта, дата окончания: </label>{{ worker.m_date_of_exp|date:"d.m.Y" }}</p>
     <p>
       <a href="{% url 'the_redhuman_is:worker_edit' pk=worker.pk %}"><button>Редактировать</button></a>
-      <a href="{% url 'the_redhuman_is:worker_del' pk=worker.pk %}"><button>Удалить</button></a>
+      <!--<a href="{% url 'the_redhuman_is:worker_del' pk=worker.pk %}"><button>Удалить</button></a>-->
     </p>
-    <p><label>Из паспорта: </label>{{ workerpass.passport_type }}</p>
-    <p><label>Паспорт, дата выдачи: </label>{{ workerpass.date_of_issue|date:"d.m.Y" }}</p>
-    <p><label>Из регистрации: </label>{{ workerreg.city }}</p>
+    <p><label>Паспорт</label></p>
+    <table>
+      <tr>
+        <th>Тип паспорта</th>
+        <th>Номер паспорта</th>
+        <th>Дата выдачи</th>
+        <th>Дата окончания</th>
+        <th>Кем выдан</th>
+      </tr>
+    {% for workerpass in workerpasss %}
+      <tr>
+        <td>{{ workerpass.passport_type }}</td>
+        <td>{{ workerpass.another_passport_number }}</td>
+        <td>{{ workerpass.date_of_issue|date:"d.m.Y" }}</td>
+        <td>{{ workerpass.date_of_exp|date:"d.m.Y" }}</td>
+        <td>{{ workerpass.issued_by }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'the_redhuman_is:new_passport' pk=worker.pk %}"><button>Добавить паспорт</button></a>
+    <p><label>Регистрация</label></p>
+    <table>
+      <tr>
+        <th>Город</th>
+        <th>Улица</th>
+        <th>Дом</th>
+        <th>Строение</th>
+        <th>Квартира</th>
+      </tr>
+    {% for workerreg in workerregs %}
+      <tr>
+        <td>{{ workerreg.city }}</td>
+        <td>{{ workerreg.street }}</td>
+        <td>{{ workerreg.house_number }}</td>
+        <td>{{ workerreg.building_number }}</td>
+        <td>{{ workerreg.appt_number }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'the_redhuman_is:new_registration' pk=worker.pk %}"><button>Добавить регистрацию</button></a>
+{% endblock %}
+
+
+{% block sidebar %}
+  <table>
+    <tr>
+      <th>Табель</th>
+      <th>Участок</th>
+      <th>Количество часов</th>
+    </tr>
+
+    {% for turnout in turnouts %}
+    <tr>
+      <td>{{ turnout.timesheet }}</td>
+      <td>{{ turnout.worker_function }}</td>
+      <td>{{ turnout.hours_worked }}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+{% endblock %}
+
+
+{% block footer %}
+{% load thumbnail %}
+{% if worker.image1 %}
+  <!--{% thumbnail timesheet.image "600x800" crop="center" as im %}
+    <img src="{{ timesheet.image.url }}" width="{{ im.width }}" height="{{ im.height }}">
+  {% endthumbnail %}-->
+  {% thumbnail worker.image1 "x300" as im %}
+      <a href="{% url 'the_redhuman_is:worker_image' pk=worker.pk %}"><img src="{{ im.url }}"></a>
+  {% endthumbnail %}
+{% endif %}
+
+{% if worker.image2 %}
+  {% thumbnail worker.image2 "x300" as im %}
+      <a href="{% url 'the_redhuman_is:worker_image' pk=worker.pk %}"><img src="{{ im.url }}"></a>
+  {% endthumbnail %}
+{% endif %}
+
+{% if worker.image3 %}
+  {% thumbnail worker.image3 "x300" as im %}
+      <a href="{% url 'the_redhuman_is:worker_image' pk=worker.pk %}"><img src="{{ im.url }}"></a>
+  {% endthumbnail %}
+{% endif %}
 
 {% endblock %}

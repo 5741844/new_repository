@@ -9,14 +9,34 @@
 	{% block menu %}{% endblock %}
 {% endblock %}
 
-{% block page %}
-<a href="{% url 'the_redhuman_is:base' %}">Главная</a>
-<a href="{% url 'the_redhuman_is:list_workers' %}">Список</a>
-<a href="{% url 'the_redhuman_is:new_worker' %}">Добавить рабочего</a>
-<a href="{% url 'the_redhuman_is:customers' %}">Клиенты</a>
 
-      {% block content %}
-      {% endblock %}
+{% block page %}
+<!--<a href="{% url 'the_redhuman_is:base' %}">Главная</a>-->
+<a href="{% url 'the_redhuman_is:list_workers' %}">Список рабочих</a>
+<a href="{% url 'the_redhuman_is:customers' %}">Клиенты</a>
+<a href="{% url 'the_redhuman_is:timesheets' %}">Список табелей</a>
+    <table>
+      <tr>
+        <td>
+
+          {% block content %}
+
+          {% endblock %}
+
+        </td>
+        <td>
+
+          {% block sidebar %}
+
+          {% endblock %}
+
+        </td>
+      </tr>
+    </table>
+{% endblock %}
+
+
+{% block footer %}
 {% endblock %}
 
 </html>
